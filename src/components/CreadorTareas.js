@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-export const CreadorTarea = () => {
-  const [nuevaTarea, setNuevaTarea] = useState(0);
+export const CreadorTarea = (props) => {
+  // console.log(props); comento para q no salga en consola
+  const [newTasks, setNewTasks] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault(); /* este codigo para q no refresque la pagina*/
-    localStorage.setItem("task", nuevaTarea);
-    setNuevaTarea("");
+    props.creatNewTask(newTasks);
+    localStorage.setItem("task", newTasks);
+    setNewTasks("");
   };
 
   return (
@@ -14,8 +16,8 @@ export const CreadorTarea = () => {
       <input
         type="text"
         placeholder="ingrese nueva tarea"
-        onChange={(e) => setNuevaTarea(e.target.value)}
-        value={nuevaTarea}
+        onChange={(e) => setNewTasks(e.target.value)}
+        value={newTasks}
       ></input>
       <button>guardar tarea</button>
     </form>
