@@ -1,12 +1,14 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, sueEffect, useEffect } from "react";
 import { CreadorTarea } from "./components/CreadorTareas";
+import { TaskTable } from "./components/TaskTable";
 
 function App() {
   const [tasksItems, setTasksItems] = useState([
-    { name: "mi primer tarea", done: false },
-    { name: "mi segunda tarea", done: false },
-    { name: "mi tercer tarea", done: false },
+    {
+      name: "tarea uno",
+      done: true,
+    },
   ]);
 
   function creatNewTask(taskName) {
@@ -18,30 +20,30 @@ function App() {
     // setTasksItems([...tasksItems, { name: tasksItems, done: false }]); // asi se crea un nuevo objeto para no modificar objetos existentes regla de react; setTaskItems([...taskName, {name: taskName}])
   }
 
+  const toggleTask = (task) => {
+    setTasksItems(
+      tasksItems.map((t) => (t.name == task.name ? { ...t, done: !t.done } : t))
+    );
+  };
+
+  useEffect(() => {
+    let data = localStorage.getItem("task");
+    if (data) {
+      setTasksItems(JSON.parse(data));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("task", JSON.stringify(tasksItems));
+  }, [tasksItems]);
+
   return (
     <div className="App">
       <CreadorTarea creatNewTask={creatNewTask} />
-
-      <table>
-        <thead>
-          <tr>
-            <th>Tarea</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasksItems.map((task) => (
-            <tr key={task.name}>
-              <td>{task.name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TaskTable tasks={tasksItems} toggleTask={toggleTask} />
     </div>
   );
 }
 
 export default App;
 
-// https://www.youtube.com/watch?v=sjrK6RA65eQ&t=99s 20:00. vi la explicacion pero no lo codifique
-
-// ojo no hice commit ni  push
+// https://www.youtube.com/watch?v=sjrK6RA65eQ&t=99s 1:01:00 seccion para dividari las tareas hechas de las no hechas

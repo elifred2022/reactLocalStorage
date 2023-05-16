@@ -7,7 +7,7 @@ export const CreadorTarea = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault(); /* este codigo para q no refresque la pagina*/
     props.creatNewTask(newTasks);
-    localStorage.setItem("task", newTasks);
+    // localStorage.setItem("task", newTasks);
     setNewTasks("");
   };
 
