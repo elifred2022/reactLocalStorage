@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { CreadorTarea } from "./components/CreadorTareas";
 import { TaskTable } from "./components/TaskTable";
+import { VisibilityControl } from "./components/VisibilityControl";
 
 function App() {
   const [tasksItems, setTasksItems] = useState([]);
@@ -28,6 +29,12 @@ function App() {
       setTasksItems(JSON.parse(data));
     }
   }, []);
+
+  const cleanTasks = () => {
+    setTasksItems(tasksItems.filter((task) => !task.done));
+    setShowCompleted(false);
+  };
+
   useEffect(() => {
     localStorage.setItem("task", JSON.stringify(tasksItems));
   }, [tasksItems]);
@@ -37,13 +44,12 @@ function App() {
       <CreadorTarea creatNewTask={creatNewTask} />
       <TaskTable tasks={tasksItems} toggleTask={toggleTask} />
 
-      <div>
-        <input
-          type="checkbox"
-          onChange={(e) => setShowCompleted(!showCompleted)}
-        />
-        <label>Mostrar tareas hechas</label>
-      </div>
+      <VisibilityControl
+        isChecked={showCompleted}
+        setShowCompleted={(checked) => setShowCompleted(checked)}
+        cleanTasks={cleanTasks}
+      />
+
       {showCompleted === true && (
         <TaskTable
           tasks={tasksItems}
@@ -57,4 +63,4 @@ function App() {
 
 export default App;
 
-// https://www.youtube.com/watch?v=sjrK6RA65eQ&t=99s 1:13:00 seccion para dividari las tareas hechas de las no hechas
+// https://www.youtube.com/watch?v=sjrK6RA65eQ&t=99s 1:22:00 seccion para dividari las tareas hechas de las no hechas
