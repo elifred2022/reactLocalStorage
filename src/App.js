@@ -1,15 +1,11 @@
 import "./App.css";
-import { useState, sueEffect, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { CreadorTarea } from "./components/CreadorTareas";
 import { TaskTable } from "./components/TaskTable";
 
 function App() {
-  const [tasksItems, setTasksItems] = useState([
-    {
-      name: "tarea uno",
-      done: true,
-    },
-  ]);
+  const [tasksItems, setTasksItems] = useState([]);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   function creatNewTask(taskName) {
     console.log(taskName);
@@ -40,10 +36,25 @@ function App() {
     <div className="App">
       <CreadorTarea creatNewTask={creatNewTask} />
       <TaskTable tasks={tasksItems} toggleTask={toggleTask} />
+
+      <div>
+        <input
+          type="checkbox"
+          onChange={(e) => setShowCompleted(!showCompleted)}
+        />
+        <label>Mostrar tareas hechas</label>
+      </div>
+      {showCompleted === true && (
+        <TaskTable
+          tasks={tasksItems}
+          toggleTask={toggleTask}
+          showCompleted={showCompleted}
+        />
+      )}
     </div>
   );
 }
 
 export default App;
 
-// https://www.youtube.com/watch?v=sjrK6RA65eQ&t=99s 1:01:00 seccion para dividari las tareas hechas de las no hechas
+// https://www.youtube.com/watch?v=sjrK6RA65eQ&t=99s 1:13:00 seccion para dividari las tareas hechas de las no hechas
