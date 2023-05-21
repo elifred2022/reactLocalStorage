@@ -75,7 +75,7 @@ export default App;
 // para desplegar app en GH pages:
 //1. npm run build
 // 2. seguir todos los pasos para subir un repo a git esto ya lo eh venido haciendo
-// 3. en package.json; debajo de provate; "homepage": "http://elifred2022.github.io/reactLocalStorage"
+// 3. en package.json; debajo de private; "homepage": "http://elifred2022.github.io/reactLocalStorage",
 // 4. npm i gh-pages
 // 5. en package.json; hacer en scripts debajo de "eject"= "deploy": "gh-pages -d build"
 // 6. npm run build
