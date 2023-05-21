@@ -12,14 +12,19 @@ export const CreadorTarea = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="ingrese nueva tarea"
-        onChange={(e) => setNewTasks(e.target.value)}
-        value={newTasks}
-      ></input>
-      <button>guardar tarea</button>
+    <form onSubmit={handleSubmit} className="my-2 row">
+      <div className="col-9">
+        <input
+          type="text"
+          placeholder="ingrese nueva tarea"
+          onChange={(e) => setNewTasks(e.target.value)}
+          value={newTasks}
+          className="form-control"
+        ></input>
+      </div>
+      <div className="col-3">
+        <button className="btn btn-primary btn-sm">guardar tarea</button>
+      </div>
     </form>
   );
 };

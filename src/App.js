@@ -19,7 +19,9 @@ function App() {
 
   const toggleTask = (task) => {
     setTasksItems(
-      tasksItems.map((t) => (t.name == task.name ? { ...t, done: !t.done } : t))
+      tasksItems.map((t) =>
+        t.name === task.name ? { ...t, done: !t.done } : t
+      )
     );
   };
 
@@ -40,27 +42,32 @@ function App() {
   }, [tasksItems]);
 
   return (
-    <div className="App">
-      <CreadorTarea creatNewTask={creatNewTask} />
-      <TaskTable tasks={tasksItems} toggleTask={toggleTask} />
+    <main className="bg-dark vh-100 text-white">
+      <div className="container p-4 col-md-4 offset-md-4">
+        <CreadorTarea creatNewTask={creatNewTask} />
+        <TaskTable tasks={tasksItems} toggleTask={toggleTask} />
 
-      <VisibilityControl
-        isChecked={showCompleted}
-        setShowCompleted={(checked) => setShowCompleted(checked)}
-        cleanTasks={cleanTasks}
-      />
-
-      {showCompleted === true && (
-        <TaskTable
-          tasks={tasksItems}
-          toggleTask={toggleTask}
-          showCompleted={showCompleted}
+        <VisibilityControl
+          isChecked={showCompleted}
+          setShowCompleted={(checked) => setShowCompleted(checked)}
+          cleanTasks={cleanTasks}
         />
-      )}
-    </div>
+
+        {showCompleted === true && (
+          <TaskTable
+            tasks={tasksItems}
+            toggleTask={toggleTask}
+            showCompleted={showCompleted}
+          />
+        )}
+      </div>
+    </main>
   );
 }
 
 export default App;
 
 // https://www.youtube.com/watch?v=sjrK6RA65eQ&t=99s 1:22:00 seccion para dividari las tareas hechas de las no hechas
+
+// usamos bootstrap para los estilos: https://getbootstrap.com/
+// libreria npm i bootstrap@5.3.0-alpha3
