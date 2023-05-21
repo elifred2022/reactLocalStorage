@@ -71,3 +71,14 @@ export default App;
 
 // usamos bootstrap para los estilos: https://getbootstrap.com/
 // libreria npm i bootstrap@5.3.0-alpha3
+
+// para desplegar app en GH pages:
+//1. npm run build
+// 2. seguir todos los pasos para subir un repo a git esto ya lo eh venido haciendo
+// 3. en package.json; debajo de provate; "homepage": "http://elifred2022.github.io/reactLocalStorage"
+// 4. npm i gh-pages
+// 5. en package.json; hacer en scripts debajo de "eject"= "deploy": "gh-pages -d build"
+// 6. npm run build
+// 7. git add . y git commit -am "update de lo que sea"
+// 8. git push origin master
+// 6. npm run deploy
