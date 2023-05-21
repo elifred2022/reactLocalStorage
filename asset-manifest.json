@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/reactLocalStorage/static/css/main.b194f1af.css",
+    "main.js": "/reactLocalStorage/static/js/main.6f4a951e.js",
+    "index.html": "/reactLocalStorage/index.html",
+    "main.b194f1af.css.map": "/reactLocalStorage/static/css/main.b194f1af.css.map",
+    "main.6f4a951e.js.map": "/reactLocalStorage/static/js/main.6f4a951e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b194f1af.css",
+    "static/js/main.6f4a951e.js"
+  ]
+}
